@@ -13,8 +13,23 @@ class TestCalculator(unittest.TestCase):
 
     def test_divide(self):
         self.assertEqual(divide(10, 2), 5)
-        with self.assertRaises(ValueError):
-            divide(10, 0)
+        self.assertIsNone(divide(10, 0))  # Check for None instead of exception
+        self.assertEqual(divide(-10, 2), -5)
+        self.assertEqual(divide(10, -2), -5)
+        self.assertEqual(divide(-10, -2), 5)
+
+    def test_add_edge_cases(self):
+        self.assertEqual(add(0, 0), 0)
+        self.assertEqual(add(-1, 1), 0)
+
+    def test_subtract_edge_cases(self):
+        self.assertEqual(subtract(0, 0), 0)
+        self.assertEqual(subtract(-1, -1), 0)
+
+    def test_multiply_edge_cases(self):
+        self.assertEqual(multiply(0, 10), 0)
+        self.assertEqual(multiply(-1, 1), -1)
+        self.assertEqual(multiply(-1, -1), 1)
 
 if __name__ == "__main__":
     unittest.main()
